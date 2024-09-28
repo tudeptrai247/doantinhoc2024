@@ -1,8 +1,8 @@
 <?php
-function insert_sanpham($iddm,$tensp,$gia,$img,$idmau,$idsize)
+function insert_sanpham($iddm,$tensp,$gia,$img,$idmau,$idsize,$mota)
 {
     $conn= connectdb();
-    $sql = "INSERT INTO tbl_sanpham (iddm, tensp, gia,img,idmau ,idsize) VALUES ('$iddm', '$tensp', '$gia','$img','$idmau','$idsize')";
+    $sql = "INSERT INTO tbl_sanpham (iddm, tensp, gia,img,idmau ,idsize,mota) VALUES ('$iddm', '$tensp', '$gia','$img','$idmau','$idsize','$mota')";
     $conn->exec($sql);
     /* Cập Nhật slsize lại */
     $sql_update_size="UPDATE tbl_size set slspsize = slspsize - 1 where id= '$idsize'";
@@ -37,7 +37,7 @@ function delsp($id)
 function getall_sanpham()
 {   
     $conn= connectdb();     // hàm kết nối csdl
-    $stmt = $conn->prepare("SELECT  tbl_sanpham.id,tensp ,img,tendm,gia,mau,size FROM tbl_sanpham
+    $stmt = $conn->prepare("SELECT  tbl_sanpham.id,tensp ,img,tendm,gia,mau,size,mota FROM tbl_sanpham
     join tbl_mau on tbl_sanpham.idmau=tbl_mau.id
     join tbl_size on tbl_sanpham.idsize=tbl_size.id
     join tbl_danhmuc on tbl_sanpham.iddm=tbl_danhmuc.id
@@ -56,7 +56,7 @@ function getonesp($id)
     $kq=$stmt->fetchAll();                                    // gán cho biến $kq
     return $kq;
 }
-function updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau)
+function updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau,$mota)
 {
     $conn= connectdb();
     $sql_select ="SELECT idsize ,idmau FROM tbl_sanpham where id = $id";
@@ -69,14 +69,14 @@ function updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau)
     $old_mau=$ketqua['idmau'];
     
     if($img ==""){   // nếu update ko thay đổi hình thì chỉ cần update tên,giá,danh mục,iddm , chú ý 2 dấu bằng
-        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', iddm='".$iddm."',idsize='".$idsize."',idmau='".$idmau."' WHERE id=".$id;
+        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', iddm='".$iddm."',idsize='".$idsize."',idmau='".$idmau."',mota='".$mota."' WHERE id=".$id;
     }else{
-        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', iddm='".$iddm."', img='".$img."', idsize='".$idsize."', idmau='".$idmau."' WHERE id=".$id;
+        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', iddm='".$iddm."', img='".$img."', idsize='".$idsize."', idmau='".$idmau."',mota='".$mota."' WHERE id=".$id;
     }
     $stmt = $conn->prepare($sql);
     $stmt->execute(); 
 
-    if($old_size != $idsize)
+    if($old_size != $idsize) // nếu idsize cũ ko trùng với idsize mới thì tăng slsize cũ , giảm sl size mới
     {
         $old_size_update ="UPDATE tbl_size set slspsize = slspsize +1 where id= '$old_size'";
         $conn ->exec($old_size_update);
@@ -117,16 +117,29 @@ function filter_sanpham($dm , $size , $mau)
     {
         $sql .= " AND tbl_sanpham.idsize='$size'";
     }
-
+    //lọc size
     if(!empty($mau) && $mau != 0)
     {
         $sql .=" AND tbl_sanpham.idmau='$mau'";
     }
+    //lọc màu
     $stmt =$conn ->prepare($sql);
     $stmt->execute();
     $result =$stmt->setFetchMode(PDO::FETCH_ASSOC);
     $kq =$stmt ->fetchAll();
 
     return $kq;
+}
+// thanh tìm kiếm
+function find_sanpham($tensp)
+{
+    $conn = connectdb();
+    $sql="SELECT * FROM tbl_sanpham WHERE tensp LIKE :tensp";
+    $stmt = $conn ->prepare($sql);
+    $search="%".$tensp."%"; //tạo chuỗi tìm kiếm ,
+    $stmt->bindValue(':tensp',$search,PDO::PARAM_STR);
+    $stmt ->execute();
+
+    return $stmt ->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

@@ -74,3 +74,24 @@ footer{
     height: 300px
     
 }
+/* bộ lọc */
+.filter-container
+{
+     display: flex; /*nếu có 2 div bên trong thì sẽ xếp cho 2 div đó nằm ngang */
+     justify-content: space-between; /* cho nằm ở 2 bên */
+    align-items: center;
+    margin-bottom: 10px
+}
+.khungboloc
+{
+    border-radius: 10px;
+    border: 3px solid black;
+    padding: 10px;
+
+}
+/* thanh tìm kiếm */
+.thanhtimkiem{
+    border-radius: 10px;
+    border: 3px solid black;
+    padding: 3px;
+}

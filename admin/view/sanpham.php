@@ -49,6 +49,9 @@
     <label>Hình Ảnh</label>
     <input type="file" name="img" id="">
     <br>
+    <label>Mô Tả</label>
+    <input type="text" name="mota" id="">
+    <br>
     <input type="submit" name="themmoi" id="" class="buttonthem" value="Thêm">
 </form>
 
@@ -62,6 +65,7 @@
         <th>Size</th>
         <th>Màu</th>
         <th>Tên Danh Mục</th>
+        <th>Mô Tả</th>
         <th>Hành Động</th>
     </tr>
     <tr>
@@ -79,6 +83,7 @@
                     <td>'.$item['size'].'</td>
                     <td>'.$item['mau'].'</td>
                     <td>'.$item['tendm'].'</td>
+                    <td>'.$item['mota'].'</td>
                     <td><a href="index.php?act=updatespform&id='.$item['id'].'">Sửa</a> | <a href="index.php?act=delsp&id='.$item['id'].'">Xóa</a></td>
                 </tr>';
                 $i++;

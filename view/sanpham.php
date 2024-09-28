@@ -7,8 +7,11 @@
 </head>
 <body>
     <h2 style=text-align:center; font-size:30px>Sản Phẩm</h2>
-    <form action="index.php?act=boloc_sanpham" method="GET" action="" enctype="multipart/form-data">
+    <div class="filter-container">
+    <form action="index.php?act=boloc_sanpham" method="GET" action="" enctype="multipart/form-data" class="khungboloc">
         <input type="hidden" name="act" value="boloc_sanpham">
+        <h3>Bộ lọc sản phẩm</h3>
+        <br>
         <label>Danh Mục</label>
         <select name="dm" ud="">
             <option value=0>Tất cả</option>
@@ -49,7 +52,15 @@
             ?>
         </select>
         <button type="submit">Lọc</button>
-    </form> 
+    </form>
+    <form action="index.php" method="GET" class="thanhtimkiem">
+        <input type="hidden" name="act" value="timkiem_sanpham">    <!--phần tìm kiếm phải có hidden thì ms gửi đc act -->
+        <input type="text" name="timkiem" placeholder="Tìm tên sản phẩm">
+        <button type="submit">Tìm</button>
+    </form>
+    </div>
+
+    <br> 
     <div class="container-product">     
         <?php
             if(isset($kq) && ($kq)>0)

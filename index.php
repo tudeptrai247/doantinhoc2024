@@ -35,6 +35,11 @@
             $idsize= getall_size();
             include "view/sanpham.php";
             break;
+        case 'timkiem_sanpham':
+            $tensp=isset($_GET['timkiem']) ? $_GET['timkiem'] :''; // kiểm tra , nếu ko có thì là khoảng trống
+            $kq = find_sanpham($tensp);
+            include "view/sanpham.php";
+            break;
         default:
             include "view/trangchu.php";
             break;

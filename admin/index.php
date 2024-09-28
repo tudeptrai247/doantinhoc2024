@@ -76,6 +76,7 @@
                         $gia =$_POST['gia'];
                         $idmau = $_POST['idmau'];
                         $idsize =$_POST['idsize'];
+                        $mota =$_POST['mota'];
                         $target_dir = "../uploaded/";
                         $target_file = $target_dir . basename($_FILES["img"]["name"]);
                         $img = $target_file;    // lưu tên đường dẫn zô database
@@ -89,7 +90,7 @@
                         }
                         move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
                 
-                        insert_sanpham($iddm,$tensp,$gia,$img,$idmau,$idsize);
+                        insert_sanpham($iddm,$tensp,$gia,$img,$idmau,$idsize,$mota);
                     }
                  //load danh sach danh muc
                 $dsdm = getall_dm();
@@ -131,6 +132,7 @@
                     $tensp =$_POST['tensp'];
                     $gia =$_POST['gia'];
                     $id =$_POST['id'];
+                    $mota =$_POST['mota'];
                     if($_FILES["img"]["name"]!="")
                     {
                         $target_dir = "../uploaded/";
@@ -151,7 +153,7 @@
                     {
                         $img ="";
                     }
-                    updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau);
+                    updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau,$mota);
                 }
                     //load danh sach san pham
                 $kq = getall_sanpham();

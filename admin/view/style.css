@@ -31,6 +31,12 @@ footer{
     padding: 10px;  /* canh cho các lề xung quanh */
     border: 1px solid #ddd; /* Tạo viền cho khung */
 }
+.tieudebang td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
 .tieude
 {
    text-align: center;

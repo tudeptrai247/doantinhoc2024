@@ -47,6 +47,10 @@
         }   
     ?>
     </select>
+    <br>
+    <label>Mô Tả</label>
+    <input type="text" name="mota" id="">
+    <br>
     <input type="submit" name="capnhat" id="" class="buttonthem" value="Cập Nhật">
 </form>
 
