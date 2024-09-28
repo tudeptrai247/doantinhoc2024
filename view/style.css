@@ -1,0 +1,76 @@
+header{
+    justify-content: space-between;
+    display: flex;
+    background-color:white;
+    margin-bottom: 5px ;
+    padding :20px;
+    margin-top: 5px ;
+    padding: 10px 20px;
+    border: 5px solid black;
+    border-radius: 10px;
+    align-items: center;
+}
+.logo
+{
+    width: 180px;
+    height: 150px;
+}
+.taskbar a
+{
+    margin-left:7px ;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+.taskbar a:hover
+{
+    color: brown;
+}
+
+/* Phần Header */
+footer{
+    background-color: white;
+    border-radius: 5px;
+    border: 5px solid black;
+}
+.khungfooter {
+    margin-left: 20px; 
+    padding-left: 10px; 
+}
+.logofooter
+{
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+}
+/* phần Footer */
+.imgtrangchu
+{
+    width: 300px;
+    padding: 10px;
+    margin-right:52px ;
+}
+/* phần trang chủ  */
+.container-product
+{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    padding: 0 20px;
+
+    
+}
+.product{
+    border: 5px solid black;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0;
+    width: 300px;
+    height: 400px;
+}
+.product img
+{
+    width: 100%;
+    height: 300px
+    
+}

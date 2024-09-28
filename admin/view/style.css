@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+}
+
+header
+{
+    background-color:aqua;
+    margin-bottom: 5px ;
+    padding :20px;
+    margin-top: 5px ;
+}
+
+footer{
+     margin-top: 100px;   
+    background-color: gray;
+    padding : 50px;
+}
+
+/*tiêu đề bảng*/
+.main
+{
+    margin :50px;
+}
+.tieudebang {
+    margin-top: 20px;
+    width: 100%;
+}
+.tieudebang th{
+    background-color: antiquewhite;
+    text-align: left;
+    padding: 10px;  /* canh cho các lề xung quanh */
+    border: 1px solid #ddd; /* Tạo viền cho khung */
+}
+.tieude
+{
+   text-align: center;
+}
+/*khung nhập*/
+.khungnhap
+{
+    border: 2px solid purple;
+    text-align: center;
+    padding:5%;
+    margin: auto;   /*căn giữa*/
+    width: 200px;
+}
+.khungnhap input
+{
+   margin-bottom: 10px; 
+   display: block;
+   width: 100%;
+}
+.khungnhap label
+{
+    text-align: left;
+    font-weight: bold;
+}
+/*button thêm*/
+.buttonthem
+{
+    background-color: aqua;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    border-radius: 50px;
+}
