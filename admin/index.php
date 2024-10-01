@@ -8,6 +8,7 @@
     include "../model/sanpham.php";
     include "../model/sizedb.php";
     include "../model/maudb.php";
+    include "../model/user.php";
     //connectdb();
 
     include "view/header.php";
@@ -253,6 +254,10 @@
                     $kq=getall_mau();
                     include "view/mau.php";
                 } 
+                break;
+            case 'user':
+                $kq =getall_user();
+                include 'view/user.php';
                 break;
             case 'logout':
                if(isset($_SESSION['role'])) unset($_SESSION['role']);

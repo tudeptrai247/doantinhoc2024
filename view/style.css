@@ -27,6 +27,8 @@ header{
     color: brown;
 }
 
+
+
 /* Phần Header */
 footer{
     background-color: white;
@@ -94,4 +96,33 @@ footer{
     border-radius: 10px;
     border: 3px solid black;
     padding: 3px;
+}
+/* Login */
+.khungnhap
+{
+    border: 2px solid purple;
+    text-align: center;
+    padding:5%;
+    margin: auto;   /*căn giữa*/
+    width: 200px;
+}
+.khungnhap input
+{
+   margin-bottom: 10px; 
+   display: block;
+   width: 100%;
+}
+.khungnhap label
+{
+    text-align: left;
+    font-weight: bold;
+}
+.buttonthem
+{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    border-radius: 50px;
 }

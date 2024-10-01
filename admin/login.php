@@ -14,7 +14,7 @@
         else{
            $txt_err="User name hoặc password không tồn tại"; 
         }//header('location: login.php');
-    }
+    }   // chỉ đăng nhập admin , ko tính user vì set roll bằng 1
 ?>
 <!DOCTYPE html>
 <html lang="en">

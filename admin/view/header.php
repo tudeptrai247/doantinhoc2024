@@ -13,7 +13,7 @@
             <a href="index.php">Trang Chủ</a>
             <a href="index.php?act=danhmuc">Danh Mục</a>
             <a href="index.php?act=sanpham">Sản Phẩm</a>
-            <a href="index.php?act=taikhoan">Tài Khoản</a>
+            <a href="index.php?act=user">Tài Khoản</a>
             <a href="index.php?act=size">Size</a>
             <a href="index.php?act=mau">Màu</a>
             <a href="index.php?act=donhang">Dơn Hàng</a>
