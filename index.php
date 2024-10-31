@@ -85,6 +85,36 @@
             unset($_SESSION['user']);
             header('location: index.php');
             break;
+        case 'profileuser':
+            $id=$_SESSION['iduser'];
+            $kq=getone_user($id);
+            $_SESSION['user'] =  $kq[0]['user']; 
+            $_SESSION['name'] =  $kq[0]['name'];   
+            $_SESSION['address'] =  $kq[0]['address'];  
+            $_SESSION['email'] =  $kq[0]['email'];        
+            $_SESSION['pass'] =  $kq[0]['pass'];    
+            include 'view/profileuser.php';
+            break;
+        case 'capnhatuser':
+            if(isset($_POST['capnhat']) && ($_POST['capnhat']))
+            {
+                $id=$_POST['id'];
+                $name =$_POST['name'];
+                $user =$_POST['user'];
+                $pass = $_POST['pass'];
+                $email =$_POST['email'];
+                $address =$_POST['address'];
+                capnhat_user($id,$name,$user,$pass,$email,$address);
+                
+                $_SESSION['user'] =  $kq[0]['user']; 
+                $_SESSION['name'] =  $kq[0]['name'];   
+                $_SESSION['address'] =  $kq[0]['address'];  
+                $_SESSION['email'] =  $kq[0]['email'];        
+                $_SESSION['pass'] =  $kq[0]['pass'];  
+                header('location: index.php?act=profileuser');
+            }
+            include 'view/capnhatuser.php';
+            break;
         default:
             include "view/trangchu.php";
             break;
