@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title></title>
 </head>
 <body>
     <h2 style=text-align:center; font-size:30px>Sản Phẩm</h2>
     <div class="filter-container">
     <form action="index.php?act=boloc_sanpham" method="GET" action="" enctype="multipart/form-data" class="khungboloc">
+        
         <input type="hidden" name="act" value="boloc_sanpham">
         <h3>Bộ lọc sản phẩm</h3>
         <br>
@@ -69,7 +71,9 @@
                 $imagePath=str_replace('../','./',$item['img']);  // thay đổi đường dẫn
                     echo '
                     <div class="product">      
-                    <td><img src="'.$imagePath.'" width="80px"></td>
+                    <a href="index.php?act=chitietsanpham&id='.$item['id'].'">
+                    <img src="'.$imagePath.'" width="80px">
+                    </a>
                     <br>
                     <h4>'.$item['tensp'].'</h4>
                     <p>Price:'.$item['gia'].' đ</p>
@@ -80,5 +84,14 @@
         ?>
     </div>
     <br>
+   
+    <!-- phân trang -->
+     <div class="phantrang"> 
+        <?php  for($i=1;$i<=$total_pages;$i++): ?> 
+        <a href="?act=sanpham&page=<?php echo $i; ?>"><?php echo $i; ?>
+        </a>
+        <?php endfor ?>
+       
+     </div>
 </body>
 </html>

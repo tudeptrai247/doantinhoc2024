@@ -9,6 +9,7 @@
     include "../model/sizedb.php";
     include "../model/maudb.php";
     include "../model/user.php";
+    include "../model/donhang.php";
     //connectdb();
 
     include "view/header.php";
@@ -259,10 +260,34 @@
                 $kq =getall_user();
                 include 'view/user.php';
                 break;
+            case 'donhang':
+                $kq = getalldonhang();
+                include 'view/donhang.php';
+                break;
+            case 'updatedonhang':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    $kq = getalldonhang();
+                    $kqone=getinfodonhang($id);
+                    include "view/updatedonhang.php";
+                }
+                if(isset($_POST['capnhat'])&&($_POST['capnhat'])){
+                        $idhoadon= $_POST['id'];
+                        $trangthai=$_POST['trangthai'];
+                        updatedonhang($idhoadon,$trangthai);
+                        $kq = getalldonhang();
+                        include "view/donhang.php";
+                    }
+                break;
+            case 'chitietdonhang':
+                $kq=getallchitietdonhang();
+                include "view/chitietdonhang.php";
+                break;
             case 'logout':
                if(isset($_SESSION['role'])) unset($_SESSION['role']);
                 header('location: login.php');
                 break;
+           
             default:
                 include "view/home.php";
                 break;

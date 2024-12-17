@@ -72,19 +72,28 @@ function getall_user()
 function getone_user($id)
 {
     $conn= connectdb();
-    $stmt = $conn->prepare("SELECT * FROM tbl_user where id=".$id);
+    $stmt = $conn->prepare("SELECT * FROM tbl_user where id= :id");
+    $stmt ->bindParam(':id',$id,PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);    // trả về dữ liệu là mảng
     $kq=$stmt->fetchAll();                                    // gán cho biến $kq
     return $kq;
 }
 
-function capnhat_user($id,$name,$email,$address,$user,$pass)
+function capnhat_user($id,$user,$pass,$name,$email,$address)
 {
     $conn = connectdb();
-    $sql ="UPDATE tbl_user SET name='".$name."',email='".$email."',address='".$address."' 
-    ,user='".$user."',pass='".$pass."' WHERE id=".$id;
+    $sql ="UPDATE tbl_user SET user='".$user."',pass='".$pass."',name='".$name."',email='".$email."',address='".$address."' WHERE id=".$id;
     $stmt=$conn->prepare($sql);
     $stmt->execute();
+}
+
+function check_account($user,$pass){
+    $conn=connectdb();
+    $stmt =$conn->prepare("SELECT id,user,pass,role FROM tbl_user WHERE user= :user");
+    $stmt->bindParam('user',$user,PDO::PARAM_STR);
+    $stmt->execute();
+    $result=$stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
 }
 ?>

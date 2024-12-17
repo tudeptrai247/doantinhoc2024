@@ -4,6 +4,7 @@
     
     <tr>
         <th>STT</th>
+        <th>Mã Tài Khoản</th>
         <th>Tên</th>
         <th>Địa Chỉ</th>
         <th>Email</th>
@@ -18,6 +19,7 @@
             foreach ($kq as $item) {
          echo' <tr>
                     <td>'.$i.'</td>
+                    <td>'.$item['id'].'</td>
                     <td>'.$item['name'].'</td>
                     <td>'.$item['address'].'</td>
                     <td>'.$item['email'].'</td>

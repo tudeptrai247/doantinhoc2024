@@ -12,7 +12,7 @@
     <nav class ="taskbar">
         <a href="index.php">Trang Chủ</a>
         <a href="index.php?act=sanpham">Sản Phẩm</a>
-        <a href="index.php?act=sanpham">Sản Phẩm</a>
+        <a href="index.php?act=giohang">Giỏ Hàng</a>
         <a href="index.php?act=sanpham">Sản Phẩm</a>
         <a href="index.php?act=sanpham">Sản Phẩm</a>
     </nav>

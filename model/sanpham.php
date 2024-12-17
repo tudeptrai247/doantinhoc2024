@@ -34,14 +34,30 @@ function delsp($id)
      $conn->exec($sql_update_mau);
     }
 }
-function getall_sanpham()
-{   
+function getall_sanpham(){
     $conn= connectdb();     // hàm kết nối csdl
     $stmt = $conn->prepare("SELECT  tbl_sanpham.id,tensp ,img,tendm,gia,mau,size,mota FROM tbl_sanpham
     join tbl_mau on tbl_sanpham.idmau=tbl_mau.id
     join tbl_size on tbl_sanpham.idsize=tbl_size.id
     join tbl_danhmuc on tbl_sanpham.iddm=tbl_danhmuc.id
     ");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);    // trả về dữ liệu là mảng
+    $kq=$stmt->fetchAll();                                    // gán cho biến $kq
+    return $kq;
+}
+function getsanpham_phantrang($limit=8 ,$offset=0)
+{   
+    $conn= connectdb();     // hàm kết nối csdl
+    $stmt = $conn->prepare("SELECT  tbl_sanpham.id,tensp ,img,tendm,gia,mau,size,mota FROM tbl_sanpham
+    join tbl_mau on tbl_sanpham.idmau=tbl_mau.id
+    join tbl_size on tbl_sanpham.idsize=tbl_size.id
+    join tbl_danhmuc on tbl_sanpham.iddm=tbl_danhmuc.id
+    LIMIT :limit OFFSET :offset
+    ");
+    $stmt->bindParam(':limit',$limit,PDO::PARAM_INT);
+    $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
+    
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);    // trả về dữ liệu là mảng
     $kq=$stmt->fetchAll();                                    // gán cho biến $kq
@@ -97,7 +113,7 @@ function updatesp($id,$tensp,$img,$gia,$iddm,$idsize,$idmau,$mota)
 } 
 //   trang user
 
-function filter_sanpham($dm , $size , $mau)
+function filter_sanpham($dm , $size , $mau,$limit=8 ,$offset=0)
 {
     $conn = connectdb();
     $sql="select tbl_sanpham.id , tensp,img,gia,tendm,mau,size
@@ -123,7 +139,10 @@ function filter_sanpham($dm , $size , $mau)
         $sql .=" AND tbl_sanpham.idmau='$mau'";
     }
     //lọc màu
-    $stmt =$conn ->prepare($sql);
+    $sql.=" LIMIT :limit OFFSET :offset";
+    $stmt =$conn->prepare($sql);
+    $stmt->bindParam(':limit',$limit,PDO::PARAM_INT);
+    $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
     $stmt->execute();
     $result =$stmt->setFetchMode(PDO::FETCH_ASSOC);
     $kq =$stmt ->fetchAll();
@@ -141,5 +160,17 @@ function find_sanpham($tensp)
     $stmt ->execute();
 
     return $stmt ->fetchAll(PDO::FETCH_ASSOC);
+}
+function chitietsanpham($id){
+    $conn = connectdb();
+    $sql="SELECT  tbl_sanpham.id,tensp ,img,tendm,gia,mau,size,mota FROM tbl_sanpham
+    join tbl_mau on tbl_sanpham.idmau=tbl_mau.id
+    join tbl_size on tbl_sanpham.idsize=tbl_size.id
+    join tbl_danhmuc on tbl_sanpham.iddm=tbl_danhmuc.id WHERE tbl_sanpham.id= :id";
+    $stmt = $conn ->prepare($sql);
+    $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+    $stmt->execute();
+    $kq= $stmt->fetch(PDO::FETCH_ASSOC); 
+    return $kq;
 }
 ?>

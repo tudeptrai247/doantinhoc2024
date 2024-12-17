@@ -20,7 +20,6 @@
                 <h3>Địa Chỉ :'.$_SESSION['address'].'</h3><br>
                 <td><a href="index.php?act=capnhatuser">Thay đổi thông tin</a>
                 </div>';
-
             }
         ?>
     </form>

@@ -17,6 +17,7 @@
             <a href="index.php?act=size">Size</a>
             <a href="index.php?act=mau">Màu</a>
             <a href="index.php?act=donhang">Dơn Hàng</a>
+            <a href="index.php?act=chitietdonhang">Chi Tiết Đon Hàng</a>
             <a href="index.php?act=logout">Thoát</a>
         </nav>
     </header>

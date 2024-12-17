@@ -16,11 +16,20 @@
     <input type="text" name="user" id="">
     <br>
     <label>Mật Khẩu</label>
-    <input type="" name="pass" id="">
+    <input type="password" name="pass" id="">
     <br>
     <input type="submit" name="dangnhap" id="" class="buttonthem" value="Đăng Nhập">
+    <br><br>
+    <img src="./uploaded/iconfb.png" style=max-width:30pt;max-height:30px; name="iconfb" alt="iconfb">
+    <input type="submit" name="dangnhapfb" id="" class="buttonthem" value="Đăng Nhập Bằng Facebook">
+    <?php
+if (isset($error) && $error){
+    ?> <p style="color: red"><?php echo $error; ?> </p>
+    <?php
+}
+?>
 </form>
-<br>
+
 </div>
 </body>
 </html>
